@@ -4,7 +4,8 @@
   "description": "Add formatting and linting to your project in one simple step",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint '**/*.{js,jsx}'"
+    "lint": "eslint '**/*.{js,jsx}'",
+    "postinstall": "node scripts/postinstall"
   },
   "main": ".prettierrc.json",
   "dependencies": {
