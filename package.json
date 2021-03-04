@@ -1,0 +1,29 @@
+{
+  "name": "@js-bits/formalinter",
+  "version": "0.0.1",
+  "description": "Add formatting and linting to your project in one simple step",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint '**/*.{js,jsx}'"
+  },
+  "main": ".prettierrc.json",
+  "dependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/eslint-parser": "^7.13.8",
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/js-bits/formalinter"
+  },
+  "author": "https://github.com/apolo-gh",
+  "license": "ISC"
+}
