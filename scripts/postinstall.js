@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-const path = require('path');
 const fs = require('fs');
 
 // const packageJson = require(`${process.cwd()}/package.json`);
@@ -21,7 +20,7 @@ if (process.env.INIT_CWD !== process.cwd()) {
       // get dependent package.json
       const packageJson = JSON.parse(data);
       // ESLint requires this name to start with "eslint-config-" prefix
-      const esLintConfigName = process.env.npm_package_name.replace('/', '/eslint-config-');
+      const esLintConfigName = process.env.npm_package_name.replace(/\/[^/]+$/, '/eslint-config');
       const esLintConfigFileName = '.eslintrc.json';
 
       // prepare config
@@ -43,20 +42,6 @@ if (process.env.INIT_CWD !== process.cwd()) {
       // update config
       fs.writeFile(dependentPackageJsonPath, json, error => {
         if (error) console.log(error);
-      });
-
-      // move ESLint config file to "eslint-config-*" folder
-      const esLintConfigDir = path.resolve(__dirname, `../../../${esLintConfigName}`);
-      const esLintConfigFile = path.resolve(__dirname, `../${esLintConfigFileName}`);
-      const esLintConfigFileCopy = path.resolve(esLintConfigDir, esLintConfigFileName);
-      fs.access(esLintConfigDir, dirErr => {
-        if (dirErr) {
-          fs.mkdirSync(esLintConfigDir);
-        }
-
-        fs.copyFile(esLintConfigFile, esLintConfigFileCopy, error => {
-          if (error) console.log(error);
-        });
       });
     });
   });
