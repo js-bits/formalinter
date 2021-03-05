@@ -46,8 +46,8 @@ if (process.env.INIT_CWD !== process.cwd()) {
       });
 
       // move ESLint config file to "eslint-config-*" folder
-      const esLintConfigDir = path.resolve(__dirname, `../../${esLintConfigName}`);
-      const esLintConfigFile = path.resolve(__dirname, esLintConfigFileName);
+      const esLintConfigDir = path.resolve(__dirname, `../../../${esLintConfigName}`);
+      const esLintConfigFile = path.resolve(__dirname, `../${esLintConfigFileName}`);
       const esLintConfigFileCopy = path.resolve(esLintConfigDir, esLintConfigFileName);
       fs.access(esLintConfigDir, dirErr => {
         if (dirErr) {
