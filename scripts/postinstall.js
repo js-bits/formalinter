@@ -8,11 +8,11 @@ const fs = require('fs');
 if (process.env.INIT_CWD !== process.cwd()) {
   const dependantPackageJsonPath = `${process.env.INIT_CWD}/package.json`;
 
-  fs.exists(dependantPackageJsonPath, exists => {
-    if (exists) {
-      fs.readFile(dependantPackageJsonPath, 'utf8', (err, data) => {
-        if (err) {
-          console.error(err);
+  fs.access(dependantPackageJsonPath, err => {
+    if (!err) {
+      fs.readFile(dependantPackageJsonPath, 'utf8', (readErr, data) => {
+        if (readErr) {
+          console.error(readErr);
         } else {
           const packageJson = JSON.parse(data);
 
@@ -64,11 +64,11 @@ const prepareVsCodeSettings = settings => {
   });
 };
 
-fs.exists(vscodeSettingsDirPath, exists => {
-  if (exists) {
-    fs.readFile(vscodeSettingsJsonPath, 'utf8', (err, data) => {
-      if (err) {
-        console.error(err);
+fs.access(vscodeSettingsDirPath, err => {
+  if (!err) {
+    fs.readFile(vscodeSettingsJsonPath, 'utf8', (readErr, data) => {
+      if (readErr) {
+        console.error(readErr);
       } else {
         prepareVsCodeSettings(JSON.parse(data));
       }
