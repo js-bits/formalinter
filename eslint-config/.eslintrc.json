@@ -29,7 +29,8 @@
         "selector": "WithStatement",
         "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
       }
-    ]
+    ],
+    "import/extensions": ["error", "always"]
   },
   "env": {
     "browser": true,
