@@ -1,44 +1,64 @@
-// const packageJson = require(`${process.cwd()}/package.json`);
-
-// console.log('postinstall script', process.env.npm_package_scripts_lint);
-
+/* eslint-disable no-console */
+const path = require('path');
 const fs = require('fs');
 
-// check the same package dir
+// const packageJson = require(`${process.cwd()}/package.json`);
+// console.log('postinstall script', process.env.npm_package_scripts_lint);
+
+// make sure we are within dependent project
 if (process.env.INIT_CWD !== process.cwd()) {
-  const dependantPackageJsonPath = `${process.env.INIT_CWD}/package.json`;
+  const dependentPackageJsonPath = `${process.env.INIT_CWD}/package.json`;
 
-  fs.access(dependantPackageJsonPath, err => {
-    if (!err) {
-      fs.readFile(dependantPackageJsonPath, 'utf8', (readErr, data) => {
-        if (readErr) {
-          console.error(readErr);
-        } else {
-          const packageJson = JSON.parse(data);
+  // check that dependent project has package.json
+  fs.access(dependentPackageJsonPath, err => {
+    if (err) return;
 
-          // prepare config
-          if (!packageJson.prettier) {
-            packageJson.prettier = `${process.env.npm_package_name}/.prettierrc.json`;
-          }
-          if (!packageJson.eslintConfig) {
-            packageJson.eslintConfig = {
-              extends: `${process.env.npm_package_name}/.eslintrc.json`,
-            };
-          }
-          packageJson.scripts = packageJson.scripts || {};
-          if (!packageJson.scripts.lint) {
-            packageJson.scripts.lint = process.env.npm_package_scripts_lint;
-          }
+    fs.readFile(dependentPackageJsonPath, 'utf8', (readErr, data) => {
+      if (readErr) {
+        console.error(readErr);
+        return;
+      }
+      // get dependent package.json
+      const packageJson = JSON.parse(data);
+      // ESLint requires this name to start with "eslint-config-" prefix
+      const esLintConfigName = process.env.npm_package_name.replace('/', '/eslint-config-');
+      const esLintConfigFileName = '.eslintrc.json';
 
-          const json = `${JSON.stringify(packageJson, null, '  ')}\n`;
+      // prepare config
+      if (!packageJson.prettier) {
+        packageJson.prettier = `${process.env.npm_package_name}/.prettierrc.json`;
+      }
+      if (!packageJson.eslintConfig) {
+        packageJson.eslintConfig = {
+          extends: `${esLintConfigName}/${esLintConfigFileName}`,
+        };
+      }
+      packageJson.scripts = packageJson.scripts || {};
+      if (!packageJson.scripts.lint) {
+        packageJson.scripts.lint = process.env.npm_package_scripts_lint;
+      }
 
-          // update config
-          fs.writeFile(dependantPackageJsonPath, json, error => {
-            if (error) console.log(error);
-          });
-        }
+      const json = `${JSON.stringify(packageJson, null, '  ')}\n`;
+
+      // update config
+      fs.writeFile(dependentPackageJsonPath, json, error => {
+        if (error) console.log(error);
       });
-    }
+
+      // move ESLint config file to "eslint-config-*" folder
+      const esLintConfigDir = path.resolve(__dirname, `../../${esLintConfigName}`);
+      const esLintConfigFile = path.resolve(__dirname, esLintConfigFileName);
+      const esLintConfigFileCopy = path.resolve(esLintConfigDir, esLintConfigFileName);
+      fs.access(esLintConfigDir, dirErr => {
+        if (dirErr) {
+          fs.mkdirSync(esLintConfigDir);
+        }
+
+        fs.copyFile(esLintConfigFile, esLintConfigFileCopy, error => {
+          if (error) console.log(error);
+        });
+      });
+    });
   });
 }
 
