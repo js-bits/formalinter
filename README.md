@@ -1,76 +1,68 @@
-# Easy and standard way to configure project linting/formatting
+# Add basic formatting and linting to your project in one simple step
 
-1. Add `@my/dev-config-eslint-prettier` as a dev dependency
-1. Use shared ESLint and Prettier configs (see below)
+This package incudes standardized ESLint and Prettier configuration, automatically adds `lint` NPM script for source code linting and enables auto-formatting in [Visual Studio Code](https://code.visualstudio.com/).
 
-```json
-// package.json
-{
-  ...
-  "devDependencies": {
-    "@my/eslint-config-common": "git+ssh://git@bitbucket.org:petprojectos/dev-config-eslint-prettier.git#0.0.1",
-  }
-  ...
-}
+## Installation
+
+Install with npm:
+
+```
+npm install @js-bits/formalinter -D
 ```
 
-(!) NOTE 1: `eslint-config-` prefix is required by ESLint
+Install with yarn:
 
-(!) NOTE 2: All required dependencies will be installed automatically
-
-## Using shared Prettier config
-
-[https://prettier.io/docs/en/configuration.html#sharing-configurations](https://prettier.io/docs/en/configuration.html#sharing-configurations)
-
-```json
-// package.json
-{
-  ...
-  "prettier": "@my/eslint-config-common/.prettierrc.json"
-}
+```
+yarn add @js-bits/formalinter -D
 ```
 
-## Using shared ESLint config
+That's all you need to do.
 
-[https://eslint.org/docs/developer-guide/shareable-configs](https://eslint.org/docs/developer-guide/shareable-configs)
+## VS Code Integration
 
-Shareable configs are simply npm packages that export a configuration object. Make sure the module name begins with `eslint-config-`, such as `eslint-config-myconfig`. npm scoped modules are also supported, by naming or prefixing the module with `@scope/eslint-config`, such as `@scope/eslint-config` or `@scope/eslint-config-myconfig`.
+1. Install [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions for VSCode if you haven't already done so.
+1. Restart VSCode to make sure that updated configuration is applied.
+1. Enjoy 🎉
 
-```json
-// package.json
-{
-  ...
+## Customization
+
+Formalinter adds the following to your project's package.json
+
+```
+  "scripts": {
+    ...
+    "lint": "eslint '**/*.{js,jsx}'"
+  },
+  "prettier": "@js-bits/formalinter/.prettierrc.json",
   "eslintConfig": {
-    "extends": "@my/eslint-config-common/.eslintrc.json"
+    "extends": "@js-bits/eslint-config-formalinter/.eslintrc.json"
   }
-}
 ```
 
-## Integration with VS Code
+For further information regarding ESLint and Prettier customization please refer to sharable config docs:
 
-1. Download the ESLint and Prettier extensions for VSCode.
-1. Make sure Prettier formats on save. Configure Prettier in your settings in VSCode.
+- ESLint: [Shareable Configs](https://eslint.org/docs/developer-guide/shareable-configs)
+- Prettier: [Sharing configurations](https://prettier.io/docs/en/configuration.html#sharing-configurations)
 
-```
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "[json]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "editor.formatOnSave": true,
-    "json.format.enable": false
-```
+## Developer notes
+
+(!) NOTE: `eslint-config-` prefix is required by ESLint
+
+> Shareable configs are simply npm packages that export a configuration object. Make sure the module name begins with `eslint-config-`, such as `eslint-config-myconfig`. npm scoped modules are also supported, by naming or prefixing the module with `@scope/eslint-config`, such as `@scope/eslint-config` or `@scope/eslint-config-myconfig`.
+
+### Useful links
 
 - [https://glebbahmutov.com/blog/configure-prettier-in-vscode/#format-json-files-with-prettier](https://glebbahmutov.com/blog/configure-prettier-in-vscode/#format-json-files-with-prettier)
 - [https://blog.echobind.com/integrating-prettier-eslint-airbnb-style-guide-in-vscode-47f07b5d7d6a](https://blog.echobind.com/integrating-prettier-eslint-airbnb-style-guide-in-vscode-47f07b5d7d6a)
 - [https://scotch.io/tutorials/linting-and-formatting-with-eslint-in-vs-code](https://scotch.io/tutorials/linting-and-formatting-with-eslint-in-vs-code)
 
-### Recent issues with VS Code integration
+### VSCode integration issues
 
 - [Unable to resolve custom configuration module](https://github.com/prettier/prettier-vscode/issues/1289)
 - [Extension not auto-fixing on Save](https://github.com/microsoft/vscode-eslint/issues/833)
 - [Code Actions on Save for a particular source waits for all outstanding code action requests to complete](https://github.com/microsoft/vscode/issues/89745)
 - [not working with eslint 6](https://github.com/prettier/prettier-vscode/issues/870#issuecomment-571163060)
 
-## Known issues
+### Other issues
 
 - [Parsing error: Unexpected token](https://stackoverflow.com/questions/36001552/eslint-parsing-error-unexpected-token)
