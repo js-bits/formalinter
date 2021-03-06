@@ -1,6 +1,6 @@
 {
   "name": "@js-bits/formalinter",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Add formatting and linting to your project in one simple step",
   "keywords": [
     "javascript",
