@@ -1,6 +1,0 @@
-{
-  "name": "@js-bits/eslint-config",
-  "description": "Fake package to help ESLint to find proper configuration to extend from",
-  "version": "0.0.2",
-  "main": ".eslintrc.json"
-}

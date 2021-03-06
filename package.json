@@ -20,7 +20,7 @@
   "dependencies": {
     "@babel/core": "^7.13.8",
     "@babel/eslint-parser": "^7.13.8",
-    "@js-bits/eslint-config": "file:./eslint-config",
+    "@js-bits/eslint-config": "^0.0.2",
     "eslint": "^7.21.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.1.0",
@@ -38,6 +38,6 @@
   "author": "https://github.com/apolo-gh",
   "license": "ISC",
   "eslintConfig": {
-    "extends": "./eslint-config/.eslintrc.json"
+    "extends": "@js-bits/eslint-config/.eslintrc.json"
   }
 }
