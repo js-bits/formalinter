@@ -20,7 +20,8 @@
   "dependencies": {
     "@babel/core": "^7.14.6",
     "@babel/eslint-parser": "^7.14.7",
-    "@js-bits/eslint-config": "^0.0.3",
+    "@babel/preset-react": "^7.14.5",
+    "@js-bits/eslint-config": "^0.1.1",
     "eslint": "^7.30.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
