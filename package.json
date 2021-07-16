@@ -1,6 +1,6 @@
 {
   "name": "@js-bits/formalinter",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Add formatting and linting to your project in one simple step",
   "keywords": [
     "javascript",
@@ -20,7 +20,8 @@
   "dependencies": {
     "@babel/core": "^7.14.6",
     "@babel/eslint-parser": "^7.14.7",
-    "@js-bits/eslint-config": "^0.0.3",
+    "@babel/preset-react": "^7.14.5",
+    "@js-bits/eslint-config": "^0.1.0",
     "eslint": "^7.30.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
