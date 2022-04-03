@@ -34,7 +34,7 @@ if (process.env.INIT_CWD !== process.cwd()) {
       }
       packageJson.scripts = packageJson.scripts || {};
       if (!packageJson.scripts.lint) {
-        packageJson.scripts.lint = `eslint '**/*.{js,jsx}'`;
+        packageJson.scripts.lint = "eslint '**/*.{js,jsx}'";
         // npm doesn't return npm_package_scripts_lint while yarn works file
         // packageJson.scripts.lint = process.env.npm_package_scripts_lint;
       }
