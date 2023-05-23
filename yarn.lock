@@ -359,10 +359,10 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@js-bits/eslint-config@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@js-bits/eslint-config/-/eslint-config-1.0.1.tgz#d97f0c5279a9aea71a89844c3a0063d5f8d5d012"
-  integrity sha512-FDwlllWNcg+Uy7fVw6BjcRBp7hXjJV9NrhZbb/UMTWu9dKL23wsSlPwsqUPAS0VYsjXEOOCTfa1WqsC1c9C7FA==
+"@js-bits/eslint-config@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@js-bits/eslint-config/-/eslint-config-1.0.2.tgz#7ac4c6bf5efabaf25a4bc9a0179771d9f6b6dc2b"
+  integrity sha512-ueFQO1S5Yxm6a8cfEB5L2RJumYBH8XK2KENPBECu8KGyU3he54RItRGSmCEIIPPlhyUn+zSSlmH17XPcILWgJQ==
 
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"
