@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable no-param-reassign, no-console */
 const fs = require('fs');
 
 // const packageJson = require(`${process.cwd()}/package.json`);

@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-vars */
-// eslint-disable-next-line import/no-unresolved
+/* eslint-disable no-unused-vars, import/no-unresolved */
+// @ts-ignore
 import React from 'react';
 
 export default function App() {
